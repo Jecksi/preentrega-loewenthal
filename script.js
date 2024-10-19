@@ -1,46 +1,68 @@
-let rascador = 5000;
-let casaDeGato = 20000;
-let jugueteDeGato = 2000;
-let comederoDeGato = 10000;
+const CATALOGO = [
+  ,
+  {
+    producto: "rascador",
+    precio: 5000,
+  },
+  {
+    producto: "casa de gato",
+    precio: 20000,
+  },
 
-let totalDeCompra = 0;
-
-console.log(
-  "1.- Rascador: " + rascador + "\n",
-  "2.- Casa de Gato " + casaDeGato + "\n",
-  "3.- Juguete de Gato " + jugueteDeGato + "\n",
-  "4.- Comedero de Gato " + comederoDeGato + "\n"
-);
-
-function agregarProductos(producto) {
-  if (producto === "1") {
-    alert("Se ha agregado el rascador a tu carrito de compra");
-    totalDeCompra += rascador;
-    // totalDeCompra = 5000
-  } else if (producto === "2") {
-    alert("Se ha agregado la casa de gato a tu carrito de compra");
-    totalDeCompra += casaDeGato;
-    // Total de compra ya pasa a ser 5000
-    // si el cliente compra la casa de gato se suma la variable de casa de gato al Total de compra
-    // pasaria a ser 25000
-  } else if (producto === "3") {
-    alert("Se ha agregado el juguete de gato a tu carrito de compra");
-    totalDeCompra += jugueteDeGato;
-  } else if (producto === "4") {
-    alert("Se ha agregado el comedor de gato a tu carrito de compra");
-    totalDeCompra += comederoDeGato;
-  } else {
-    alert("Por favor seleccione una opcion valida");
-  }
-}
+  {
+    producto: "juguete de gato",
+    precio: 1000,
+  },
+  {
+    producto: "comedero de gato",
+    precio: 15000,
+  },
+];
 
 let continuar = true;
-while (continuar) {
-  let seleccion = prompt(
-    "Selecciona un producto: \n1. rascador \n2. casa de gato \n3. juguete de gato \n4. comedero de gato"
+let carrito = [];
+
+function comprarProductos() {
+  while (continuar) {
+    let elegir = Number(
+      prompt(
+        `Elige un producto: \n1.  ${CATALOGO[1].producto} $${CATALOGO[1].precio} \n2. ${CATALOGO[2].producto} $${CATALOGO[2].precio} \n3.  ${CATALOGO[3].producto} $${CATALOGO[3].precio} \n4. ${CATALOGO[4].producto} $${CATALOGO[3].precio}`
+      )
+    );
+    switch (elegir) {
+      case 1:
+        carrito.push(CATALOGO[elegir].precio);
+
+        break;
+      case 2:
+        carrito.push(CATALOGO[elegir].precio);
+
+        break;
+
+      case 3:
+        carrito.push(CATALOGO[elegir].precio);
+
+        break;
+
+      case 4:
+        carrito.push(CATALOGO[elegir].precio);
+
+        break;
+
+      default:
+        alert("Por favor escoge la opcion correcta");
+
+        break;
+    }
+    continuar = confirm(`Desea agregar otro producto?`);
+  }
+
+  let sumaCarrito = carrito.reduce(
+    (acumulador, precio) => acumulador + precio,
+    0
   );
-  agregarProductos(seleccion);
-  continuar = confirm("Quieres continuar?");
+
+  alert(`El total de tus productos es de $${sumaCarrito}`);
 }
-alert("El total de tu compra es " + totalDeCompra);
-console.log("El total de tu compra es " + totalDeCompra);
+
+comprarProductos();
