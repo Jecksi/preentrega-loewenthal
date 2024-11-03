@@ -1,76 +1,58 @@
 const CATALOGO = [
-  ,
-  {
-    producto: "rascador",
-    precio: 5000,
-  },
-  {
-    producto: "casa de gato",
-    precio: 20000,
-  },
-
-  {
-    producto: "juguete de gato",
-    precio: 1000,
-  },
-  {
-    producto: "comedero de gato",
-    precio: 15000,
-  },
+  { producto: "Rascador de Gato", precio: 5000 },
+  { producto: "Casa de Gato", precio: 20000 },
+  { producto: "Juguete de Gato", precio: 1000 },
+  { producto: "Comedero de Gato", precio: 15000 },
 ];
 
-let continuar = true;
 let carrito = [];
 
-function comprarProductos() {
-  while (continuar) {
-    let elegir = Number(
-      prompt(
-        `Elige un producto: \n1.  ${CATALOGO[1].producto} $${CATALOGO[1].precio} \n2. ${CATALOGO[2].producto} $${CATALOGO[2].precio} \n3.  ${CATALOGO[3].producto} $${CATALOGO[3].precio} \n4. ${CATALOGO[4].producto} $${CATALOGO[3].precio}`
-      )
-    );
-    switch (elegir) {
-      case 1:
-        carrito.push(CATALOGO[elegir].precio);
-
-        break;
-      case 2:
-        carrito.push(CATALOGO[elegir].precio);
-
-        break;
-
-      case 3:
-        carrito.push(CATALOGO[elegir].precio);
-
-        break;
-
-      case 4:
-        carrito.push(CATALOGO[elegir].precio);
-
-        break;
-
-      default:
-        alert("Por favor escoge la opcion correcta");
-
-        break;
-    }
-    continuar = confirm(`Desea agregar otro producto?`);
-  }
-
-  let sumaCarrito = carrito.reduce(
-    (acumulador, precio) => acumulador + precio,
-    0
-  );
-
-  alert(`El total de tus productos es de $${sumaCarrito}`);
+function agregarAlCarrito(producto) {
+  carrito.push(CATALOGO[producto].precio);
+  actualizarCarrito();
+  guardarCarrito();
 }
 
-comprarProductos();
+function actualizarCarrito() {
+  const total = carrito.reduce((acumulador, precio) => acumulador + precio, 0);
+  document
+    .getElementById("carrito")
+    .setAttribute("title", `El total de tu compra es: $${total}`);
+}
 
-/* function tarjetaProductos() {
-  CATALOGO.forEach((producto) => {
-    const PROD = document.createElement("section");
-    PROD.classList.add("tarj-producto");
-    PROD.innerHTML = ``;
+function guardarCarrito() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+function cargarCarrito() {
+  const carritoGuardado = JSON.parse(localStorage.getItem("carrito"));
+  if (carritoGuardado) {
+    carrito = carritoGuardado;
+    actualizarCarrito();
+  }
+}
+
+function asignarEventos() {
+  const botones = document.querySelectorAll(".articulos button");
+  botones.forEach((boton, producto) => {
+    boton.addEventListener("click", () => {
+      agregarAlCarrito(producto),
+        Toastify({
+          text: "Agregaste un producto al carrito",
+          duration: "1000",
+          position: "right",
+          graviti: "top",
+          style: {
+            background: "rgba(109, 60, 60, 0.93)",
+            fontSize: "13px",
+            borderRadius: "10px",
+            boxShadow:
+              "0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19)",
+          },
+        }).showToast();
+    });
   });
-} */
+}
+
+cargarCarrito();
+asignarEventos();

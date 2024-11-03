@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <title>Mixis</title>
   </head>
   <body>
@@ -15,7 +20,11 @@
           <li>PRODUCTOS</li>
           <li>CONOCENOS</li>
           <li>
-            <img src="img/carrito-de-compras.png" alt="carrito-de-compras" />
+            <img
+              id="carrito"
+              src="img/carrito-de-compras.png"
+              alt="carrito-de-compras"
+            />
           </li>
         </ul>
       </nav>
@@ -31,21 +40,25 @@
         <article>
           <img src="img/rascador.jpg" alt="rascador de gato" />
           <p>Rascador de Gato</p>
-          <button>COMPRAR</button>
+          <p>$5.000</p>
+          <button class="btn">COMPRAR</button>
         </article>
         <article>
           <img src="img/casadegato.jpg" alt="casa de gato" />
           <p>Casa de Gato</p>
+          <p>$20.000</p>
           <button>COMPRAR</button>
         </article>
         <article>
           <img src="img/juguete.jpg" alt="juguete de gato" />
           <p>Juguete de Gato</p>
+          <p>$1.000</p>
           <button>COMPRAR</button>
         </article>
         <article>
           <img src="img/comedero.jpg" alt="comedero de gato" />
           <p>Comedero de Gato</p>
+          <p>$15.000</p>
           <button>COMPRAR</button>
         </article>
       </div>
@@ -55,5 +68,9 @@
       <p>Todos los derechos reservados</p>
     </footer>
   </body>
-  <!--  <script src="script.js"></script> -->
+  <script src="script.js"></script>
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/toastify-js"
+  ></script>
 </html>
