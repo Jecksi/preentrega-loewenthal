@@ -66,3 +66,11 @@ function comprarProductos() {
 }
 
 comprarProductos();
+
+/* function tarjetaProductos() {
+  CATALOGO.forEach((producto) => {
+    const PROD = document.createElement("section");
+    PROD.classList.add("tarj-producto");
+    PROD.innerHTML = ``;
+  });
+} */
