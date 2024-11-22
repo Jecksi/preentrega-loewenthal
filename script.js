@@ -56,3 +56,24 @@ function asignarEventos() {
 
 cargarCarrito();
 asignarEventos();
+
+const productos = "./productos.json";
+
+fetch(productos)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    CATALOGO = data;
+    renderProductos();
+  })
+  .catch((error) => console.error("Error al cargar los productos:", error));
+
+function mostrarProductos(productosArray) {
+  const container = document.getElementById("producto-container");
+
+  productosArray.forEach((data) => {
+    const card = document.createElement("div");
+    const name = document.createElement("h3");
+    name.textContent = data.name.producto(0);
+  });
+}
